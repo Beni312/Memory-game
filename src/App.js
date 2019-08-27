@@ -1,16 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 import CardContainer from "./containers/card/CardContainer";
 import StartScreen from "./components/start-screen/StartScreen";
 import { connect } from "react-redux";
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <StartScreen/>
-      <CardContainer/>
-    </div>
-  );
+class App extends Component {
+
+  render() {
+    return(
+      <div className="App">
+        {this.props.cards.length === 0 ? <StartScreen/> : null}
+        <CardContainer/>
+      </div>
+    );
+  }
 }
 
-export default connect(null, null)(App);
+const mapStateToProps = state => {
+  return {
+    cards: state.card.cards
+  };
+};
+
+export default connect(mapStateToProps, null)(App);
