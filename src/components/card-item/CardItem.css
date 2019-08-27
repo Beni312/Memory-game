@@ -1,0 +1,9 @@
+.imageContainer {
+    width: 150px;
+    height: 150px;
+}
+
+.imageContainer img {
+    width: inherit;
+    padding: 25px;
+}

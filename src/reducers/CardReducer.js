@@ -2,21 +2,19 @@ import * as actionTypes from '../actions/actionTypes';
 import uuid from 'uuid/v1';
 
 let images = [];
-const req = require.context('../../public/images/cards', false, /.*\.png$/);
+const req = require.context('../images/cards', false, /.*\.png$/);
 req.keys().forEach(function (key) {
-  images.push({
-    src: key
-  })
+  images.push(key);
 });
 
 const initialState = {
   cards: [],
   images: images,
   firstGuess: null,
-  deckSize: null,
+  deckSize: 6,
   tries: null,
   changeableDeckSizes: [
-    3,4,5,6,7,8,9,10
+    6,8,10,12,14,16,18,20
   ]
 };
 
