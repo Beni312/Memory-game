@@ -1,0 +1,13 @@
+#navbar {
+    height: 60px;
+    background-color: black !important;
+}
+
+#navbar .navbar-brand {
+    color: white;
+}
+
+#logo {
+    height: -webkit-fill-available;
+}
+
