@@ -11,7 +11,7 @@ export const changeDeckSize = (deckSize) => {
 
 export const checkForPair = (card) => {
   return {
-    type: actionTypes.CHECK_PAIRS,
+    type: actionTypes.CHECK_FOR_PAIRS,
     payload: {
       card: card
     }
@@ -21,7 +21,9 @@ export const checkForPair = (card) => {
 export const flipCard = (card) => {
   return {
     type: actionTypes.FLIP_CARD,
-    payload: card
+    payload: {
+      card: card
+    }
   };
 };
 

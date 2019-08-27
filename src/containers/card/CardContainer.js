@@ -2,15 +2,27 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import CardList from "../../components/card-list/CardList";
 import * as actions from '../../actions';
+import { CardStatus } from "../../constants/CardStatus";
 
 class CardContainer extends Component {
   componentDidMount () {
   }
 
+  flipCard = (card) => {
+    if (card.status === CardStatus.MATCHED) {
+      return;
+    }
+    if (!this.props.firstFlip) {
+      this.props.flipCard(card);
+    } else if (this.props.firstFlip.id !== card.id) {
+      this.props.checkForPair(card);
+    }
+  };
+
   render () {
     return (
       <div className={"container"}>
-        <CardList cards={this.props.cards}/>
+        <CardList cards={this.props.cards} flipCard={this.flipCard}/>
       </div>
     );
   }
@@ -19,15 +31,14 @@ class CardContainer extends Component {
 const mapStateToProps = state => {
   return {
     cards: state.card.cards,
-    isFirstFlip: !state.card.firstGuess
+    firstFlip: state.card.firstGuess
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    flipCard: (card) => {
-      this.props.isFirstFlip ? dispatch(actions.flipCard(card)) : dispatch(actions.checkForPair(card))
-    }
+    flipCard: (card) => dispatch(actions.flipCard(card)),
+    checkForPair: (card) => dispatch(actions.checkForPair(card))
   };
 };
 
