@@ -15,13 +15,14 @@ class CardContainer extends Component {
   }
 
   flipCard = (card) => {
-    if (card.status === CardStatus.MATCHED) {
+    if (card.status === CardStatus.MATCHED || (this.props.firstGuess && this.props.secondGuess)) {
       return;
     }
-    if (!this.props.firstFlip) {
+    if (!this.props.firstGuess) {
       this.props.flipCard(card);
-    } else if (this.props.firstFlip.id !== card.id) {
-      this.props.checkForPair(card);
+    } else if (this.props.firstGuess.id !== card.id) {
+      this.props.flipCard(card);
+      setTimeout(() => this.props.checkForPair(), 1000)
     }
   };
 
@@ -37,7 +38,8 @@ class CardContainer extends Component {
 const mapStateToProps = state => {
   return {
     cards: state.card.cards,
-    firstFlip: state.card.firstGuess,
+    firstGuess: state.card.firstGuess,
+    secondGuess: state.card.secondGuess,
     doAllMatch: state.card.matches && (state.card.matches * 2) === (state.card.cards.length)
   };
 };
@@ -45,7 +47,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     flipCard: (card) => dispatch(actions.flipCard(card)),
-    checkForPair: (card) => dispatch(actions.checkForPair(card)),
+    checkForPair: () => dispatch(actions.checkForPair()),
     gameEnd: () => dispatch(actions.gameEnd())
   };
 };

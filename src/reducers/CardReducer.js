@@ -12,6 +12,7 @@ const initialState = {
   cards: [],
   images: images,
   firstGuess: null,
+  secondGuess: null,
   tries: null,
   deckSize: 6,
   matches: null,
@@ -57,18 +58,18 @@ const reducer = (state = initialState, action) => {
           updatedCard,
           ...state.cards.slice(index + 1)
         ],
-        firstGuess: updatedCard
+        ...state.firstGuess == null ? {firstGuess: updatedCard} : {secondGuess: updatedCard}
       }
     }
     case actionTypes.CHECK_FOR_PAIRS: {
       let firstIndex = state.cards.indexOf(state.firstGuess);
-      let secondIndex = state.cards.indexOf(action.payload.card);
+      let secondIndex = state.cards.indexOf(state.secondGuess);
       if (firstIndex > secondIndex) {
         let temp = firstIndex;
         firstIndex = secondIndex;
         secondIndex = temp;
       }
-      if(state.firstGuess.id !== action.payload.card.id && state.firstGuess.image === action.payload.card.image) {
+      if(state.firstGuess.id !== state.secondGuess.id && state.firstGuess.image === state.secondGuess.image) {
         const matches = state.matches + 1;
         return getCheckForPairState(state, firstIndex, secondIndex, CardStatus.MATCHED, matches);
       } else {
@@ -95,6 +96,7 @@ const getCheckForPairState = (state, firstIndex, secondIndex, status, matches) =
   return {
     ...state,
     firstGuess: null,
+    secondGuess: null,
     cards: [
       ...state.cards.slice(0, firstIndex), {
         ...state.cards[firstIndex],

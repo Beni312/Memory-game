@@ -9,12 +9,9 @@ export const changeDeckSize = (deckSize) => {
   };
 };
 
-export const checkForPair = (card) => {
+export const checkForPair = () => {
   return {
-    type: actionTypes.CHECK_FOR_PAIRS,
-    payload: {
-      card: card
-    }
+    type: actionTypes.CHECK_FOR_PAIRS
   };
 };
 
