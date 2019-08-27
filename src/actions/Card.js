@@ -1,6 +1,6 @@
 import * as actionTypes from './actionTypes.js'
 
-export const selectDeckSize = (deckSize) => {
+export const changeDeckSize = (deckSize) => {
   return {
     type: actionTypes.SELECT_DECK_SIZE,
     payload: {

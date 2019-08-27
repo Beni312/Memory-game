@@ -14,7 +14,10 @@ const initialState = {
   images: images,
   firstGuess: null,
   deckSize: null,
-  tries: null
+  tries: null,
+  changeableDeckSizes: [
+    3,4,5,6,7,8,9,10
+  ]
 };
 
 const reducer = (state = initialState, action) => {

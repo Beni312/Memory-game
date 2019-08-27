@@ -6,6 +6,7 @@ import CardReducer from './reducers/CardReducer';
 import { combineReducers, createStore } from 'redux';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const rootReducer = combineReducers({
   card: CardReducer
