@@ -22,7 +22,11 @@ class CardContainer extends Component {
       this.props.flipCard(card);
     } else if (this.props.firstGuess.id !== card.id) {
       this.props.flipCard(card);
-      setTimeout(() => this.props.checkForPair(), 1000)
+      if (this.props.firstGuess.image !== card.image) {
+        setTimeout(() => this.props.checkForPair(), 2500)
+      } else {
+        this.props.checkForPair();
+      }
     }
   };
 
