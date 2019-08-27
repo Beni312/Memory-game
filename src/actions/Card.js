@@ -32,3 +32,9 @@ export const loadBoard = () => {
     type: actionTypes.LOAD_BOARD
   }
 };
+
+export const gameEnd = () => {
+  return {
+    type: actionTypes.GAME_END
+  }
+};

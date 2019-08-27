@@ -8,6 +8,12 @@ class CardContainer extends Component {
   componentDidMount () {
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (this.props.doAllMatch) {
+      this.props.gameEnd();
+    }
+  }
+
   flipCard = (card) => {
     if (card.status === CardStatus.MATCHED) {
       return;
@@ -31,14 +37,16 @@ class CardContainer extends Component {
 const mapStateToProps = state => {
   return {
     cards: state.card.cards,
-    firstFlip: state.card.firstGuess
+    firstFlip: state.card.firstGuess,
+    doAllMatch: state.card.matches && (state.card.matches * 2) === (state.card.cards.length)
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     flipCard: (card) => dispatch(actions.flipCard(card)),
-    checkForPair: (card) => dispatch(actions.checkForPair(card))
+    checkForPair: (card) => dispatch(actions.checkForPair(card)),
+    gameEnd: () => dispatch(actions.gameEnd())
   };
 };
 

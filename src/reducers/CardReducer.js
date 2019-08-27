@@ -14,6 +14,7 @@ const initialState = {
   firstGuess: null,
   tries: null,
   deckSize: 6,
+  matches: null,
   changeableDeckSizes: [
     6,8,10,12,14,16,18,20
   ]
@@ -39,7 +40,8 @@ const reducer = (state = initialState, action) => {
         ...state,
         firstGuess: null,
         cards: cards,
-        tries: 0
+        tries: 0,
+        matches: 0
       }
     }
     case actionTypes.FLIP_CARD: {
@@ -67,10 +69,21 @@ const reducer = (state = initialState, action) => {
         secondIndex = temp;
       }
       if(state.firstGuess.id !== action.payload.card.id && state.firstGuess.image === action.payload.card.image) {
-        return getCheckForPairState(state, firstIndex, secondIndex, CardStatus.MATCHED);
+        const matches = state.matches + 1;
+        return getCheckForPairState(state, firstIndex, secondIndex, CardStatus.MATCHED, matches);
       } else {
-        return getCheckForPairState(state, firstIndex, secondIndex, CardStatus.CLOSED);
+        return getCheckForPairState(state, firstIndex, secondIndex, CardStatus.CLOSED, state.matches);
       }
+    }
+    case actionTypes.GAME_END: {
+      return {
+        ...state,
+        cards: [],
+        matches: null,
+        tries: null,
+        firstGuess: null
+      }
+
     }
     default: {
       return state
@@ -78,7 +91,7 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-const getCheckForPairState = (state, firstIndex, secondIndex, status) => {
+const getCheckForPairState = (state, firstIndex, secondIndex, status, matches) => {
   return {
     ...state,
     firstGuess: null,
@@ -92,7 +105,8 @@ const getCheckForPairState = (state, firstIndex, secondIndex, status) => {
         status: status
       },
       ...state.cards.slice(secondIndex + 1)
-    ]
+    ],
+    matches: matches
   }
 };
 
