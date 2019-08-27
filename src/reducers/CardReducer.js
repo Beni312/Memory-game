@@ -108,6 +108,7 @@ const getCheckForPairState = (state, firstIndex, secondIndex, status, matches) =
       },
       ...state.cards.slice(secondIndex + 1)
     ],
+    tries: state.tries + 1,
     matches: matches
   }
 };
