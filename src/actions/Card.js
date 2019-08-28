@@ -35,3 +35,10 @@ export const gameEnd = () => {
     type: actionTypes.GAME_END
   }
 };
+
+
+export const closeAllAfterRefresh = () => {
+  return {
+    type: actionTypes.CLOSE_ALL_AFTER_REFRESH
+  }
+};

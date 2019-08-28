@@ -3,10 +3,13 @@ import CardList from "../../components/card-list/CardList";
 import React, { Component } from 'react';
 import StatisticContainer from "../statistic/StatisticContainer";
 import * as actions from '../../actions';
-import { CardStatus } from "../../constants/CardStatus";
 
 class CardContainer extends Component {
-  componentDidMount () {
+
+  componentDidMount() {
+    if (this.props.firstGuess || this.props.secondGuess) {
+      this.props.closeAllAfterRefresh();
+    }
   }
 
   componentDidUpdate(prevProps, prevState, snapshot) {
@@ -15,27 +18,11 @@ class CardContainer extends Component {
     }
   }
 
-  flipCard = (card) => {
-    if (card.status === CardStatus.MATCHED || (this.props.firstGuess && this.props.secondGuess)) {
-      return;
-    }
-    if (!this.props.firstGuess) {
-      this.props.flipCard(card);
-    } else if (this.props.firstGuess.id !== card.id) {
-      this.props.flipCard(card);
-      if (this.props.firstGuess.image !== card.image) {
-        setTimeout(() => this.props.checkForPair(), 2500)
-      } else {
-        this.props.checkForPair();
-      }
-    }
-  };
-
   render () {
     return (
       <div className={"container"}>
         <StatisticContainer/>
-        <CardList cards={this.props.cards} flipCard={this.flipCard}/>
+        <CardList cards={this.props.cards}/>
       </div>
     );
   }
@@ -52,9 +39,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    flipCard: (card) => dispatch(actions.flipCard(card)),
-    checkForPair: () => dispatch(actions.checkForPair()),
-    gameEnd: () => dispatch(actions.gameEnd())
+    gameEnd: () => dispatch(actions.gameEnd()),
+    closeAllAfterRefresh: () => dispatch(actions.closeAllAfterRefresh())
   };
 };
 

@@ -111,6 +111,21 @@ const reducer = (state = initialState, action) => {
         best: bestPoint
       });
     }
+    case actionTypes.CLOSE_ALL_AFTER_REFRESH: {
+      let cards = state.cards;
+      cards.forEach(c => {
+        if (c.status === CardStatus.OPENED) {
+          c.status = CardStatus.CLOSED;
+        }
+      });
+
+      return {
+        ...state,
+        cards: cards,
+        firstGuess: null,
+        secondGuess: null
+      }
+    }
     default: {
       return state
     }

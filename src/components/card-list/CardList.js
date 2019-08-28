@@ -10,7 +10,6 @@ export const CardList = (props) => {
         <CardItem
           key={card.id}
           card={card}
-          flipCard={props.flipCard}
         />
       ))}
     </ul>
@@ -18,8 +17,7 @@ export const CardList = (props) => {
 };
 
 CardList.propTypes = {
-  cards: PropTypes.array.isRequired,
-  flipCard: PropTypes.func.isRequired
+  cards: PropTypes.array.isRequired
 };
 
 export default CardList;
