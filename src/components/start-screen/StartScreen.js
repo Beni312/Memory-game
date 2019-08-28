@@ -2,6 +2,7 @@ import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import * as actions from '../../actions';
 import { Button, FormControl, FormGroup, FormLabel } from "react-bootstrap";
+import './StartScreen.css';
 
 class StartScreen extends Component {
 
@@ -19,10 +20,12 @@ class StartScreen extends Component {
 
   render () {
     return (
-      <div className={"container"}>
-        <FormGroup controlId="form.deckSize">
-          <FormLabel>Deck size</FormLabel>
-          <FormControl onChange={this.onChange} defaultValue={this.state.deckSize} as="select">
+      <div className={"container d-flex justify-content-center align-items-center flex-column mt-5"}>
+        <h1 className={"mb-2"}>SNAPSOFT</h1>
+        <h5 className={"mb-5"}>MEMORY GAME</h5>
+        <FormGroup className={"col-3 d-flex justify-content-center align-items-center flex-column"} controlId="form.deckSize">
+          <FormLabel className={"formTitle"}>Deck size:</FormLabel>
+          <FormControl className={"col-3"} onChange={this.onChange} defaultValue={this.state.deckSize} as="select">
             {this.props.deckSizes.map((item, index) => {
               return (
                 <option key={index} value={item}>{item}</option>

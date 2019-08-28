@@ -7,3 +7,7 @@
     width: inherit;
     padding: 25px;
 }
+
+.card {
+    border-radius: 10px !important;
+}

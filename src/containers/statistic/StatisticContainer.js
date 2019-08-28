@@ -9,7 +9,7 @@ class StatisticContainer extends Component {
   render () {
     return (
       <div className={"container mt-3 mb-1"}>
-        <div className={"statisticFlexContainer"}>
+        <div className={"statisticFlexContainer ml-4 mr-4"}>
           <div>
             <span>current tries</span>
             <span className={"font-weight-bold ml-2"}>{this.props.tries}</span>

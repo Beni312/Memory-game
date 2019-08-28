@@ -1,6 +1,7 @@
 .statisticFlexContainer{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding-right: 30px;
     padding-left: 30px;
 }
