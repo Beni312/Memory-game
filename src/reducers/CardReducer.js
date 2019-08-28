@@ -3,33 +3,43 @@ import shuffle from 'shuffle-array';
 import uuid from 'uuid/v1';
 import { CardStatus } from "../constants/CardStatus";
 
-let images = [];
-const req = require.context('../images/cards', false, /.*\.png$/);
-req.keys().forEach(function (key) {
-  images.push(key);
-});
+const getState = () => {
+  const stateFromLocalStorage = JSON.parse(localStorage.getItem('cardState'));
 
-const initialState = {
-  cards: [],
-  images: images,
-  firstGuess: null,
-  secondGuess: null,
-  tries: null,
-  deckSize: 6,
-  matches: null,
-  best: null,
-  changeableDeckSizes: [
-    6,8,10,12,14,16,18,20
-  ]
+  if (stateFromLocalStorage) {
+    return stateFromLocalStorage;
+  }
+
+  let images = [];
+  const req = require.context('../images/cards', false, /.*\.png$/);
+  req.keys().forEach(function (key) {
+    images.push(key);
+  });
+
+  return {
+    cards: [],
+    images: images,
+    firstGuess: null,
+    secondGuess: null,
+    tries: null,
+    deckSize: 6,
+    matches: null,
+    best: null,
+    changeableDeckSizes: [
+      6,8,10,12,14,16,18,20
+    ]
+  }
 };
+
+const initialState = getState();
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.SELECT_DECK_SIZE: {
-      return {
+      return saveState ({
         ...state,
         deckSize: action.payload.deckSize
-      }
+      });
     }
     case actionTypes.LOAD_BOARD: {
       const cards = [];
@@ -39,13 +49,14 @@ const reducer = (state = initialState, action) => {
         cards.push(createCard(state.images[i], CardStatus.CLOSED));
       }
       shuffle(cards);
-      return {
+      return saveState ({
         ...state,
         firstGuess: null,
+        secondGuess: null,
         cards: cards,
         tries: 0,
         matches: 0
-      }
+      });
     }
     case actionTypes.FLIP_CARD: {
       const index = state.cards.indexOf(action.payload.card);
@@ -53,7 +64,7 @@ const reducer = (state = initialState, action) => {
         ...state.cards[index],
         status: CardStatus.OPENED
       };
-      return {
+      return saveState ({
         ...state,
         cards: [
           ...state.cards.slice(0, index),
@@ -61,7 +72,7 @@ const reducer = (state = initialState, action) => {
           ...state.cards.slice(index + 1)
         ],
         ...state.firstGuess == null ? {firstGuess: updatedCard} : {secondGuess: updatedCard}
-      }
+      });
     }
     case actionTypes.CHECK_FOR_PAIRS: {
       let firstIndex = state.cards.indexOf(state.firstGuess);
@@ -71,6 +82,10 @@ const reducer = (state = initialState, action) => {
         firstIndex = secondIndex;
         secondIndex = temp;
       }
+      if(state.secondGuess === null) {
+        return state;
+      }
+
       if(state.firstGuess.id !== state.secondGuess.id && state.firstGuess.image === state.secondGuess.image) {
         const matches = state.matches + 1;
         return getCheckForPairState(state, firstIndex, secondIndex, CardStatus.MATCHED, matches);
@@ -88,14 +103,14 @@ const reducer = (state = initialState, action) => {
         bestPoint = state.best;
       }
 
-      return {
+      return saveState ({
         ...state,
         cards: [],
         matches: null,
         tries: null,
         firstGuess: null,
         best: bestPoint
-      }
+      });
     }
     default: {
       return state
@@ -104,7 +119,7 @@ const reducer = (state = initialState, action) => {
 };
 
 const getCheckForPairState = (state, firstIndex, secondIndex, status, matches) => {
-  return {
+  return saveState ({
     ...state,
     firstGuess: null,
     secondGuess: null,
@@ -121,7 +136,7 @@ const getCheckForPairState = (state, firstIndex, secondIndex, status, matches) =
     ],
     tries: state.tries + 1,
     matches: matches
-  }
+  });
 };
 
 const createCard = (image, status) => {
@@ -130,6 +145,11 @@ const createCard = (image, status) => {
     image: image,
     status: status
   }
+};
+
+const saveState = (newState) => {
+  localStorage.setItem('cardState', JSON.stringify(newState));
+  return newState;
 };
 
 export default reducer;
