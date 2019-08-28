@@ -3,7 +3,7 @@ import CardContainer from "./containers/card/CardContainer";
 import StartScreen from "./components/start-screen/StartScreen";
 import StatisticContainer from "./containers/statistic/StatisticContainer";
 import { connect } from "react-redux";
-import { CustomNavbar } from "./containers/navbar/CustomNavbar";
+import CustomNavbar from "./containers/navbar/CustomNavbar";
 import './App.css';
 
 class App extends Component {

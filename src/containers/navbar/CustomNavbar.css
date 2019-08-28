@@ -7,6 +7,16 @@
     color: white;
 }
 
+.formTitle {
+    color: grey;
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+
+.deckSizeSelect {
+    width: 75px !important;
+}
+
 #logo {
     height: -webkit-fill-available;
 }
