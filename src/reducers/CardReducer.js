@@ -126,6 +126,16 @@ const reducer = (state = initialState, action) => {
         secondGuess: null
       }
     }
+    case actionTypes.CLEAR_BOARD: {
+      return {
+        ...state,
+        firstGuess: null,
+        secondGuess: null,
+        matches: null,
+        tries: null,
+        cards: []
+      }
+    }
     default: {
       return state
     }

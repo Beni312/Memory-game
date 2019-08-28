@@ -14,6 +14,10 @@ class StartScreen extends Component {
     };
   }
 
+  componentDidMount() {
+    this.props.clearBoard();
+  }
+
   onChange = (e) => {
     this.setState({ deckSize: e.target.value });
     this.props.changeDeckSize(e.target.value);
@@ -50,7 +54,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     changeDeckSize: (deckSize) => dispatch(actions.changeDeckSize(deckSize)),
-    loadBoard: () => dispatch(actions.loadBoard())
+    loadBoard: () => dispatch(actions.loadBoard()),
+    clearBoard: () => dispatch(actions.clearBoard())
   };
 };
 

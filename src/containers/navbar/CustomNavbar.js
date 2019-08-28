@@ -10,14 +10,13 @@ class CustomNavbar extends Component {
 
   onChange = (e) => {
     this.setState({ deckSize: e.target.value });
-    this.props.changeDeckSize(e.target.value);
   };
 
   render() {
     return (
       <Navbar id={"navbar"} expand="lg">
         <Navbar.Brand>
-          <Image id={"logo"} src={logo}/>
+          <Link to="/"><Image id={"logo"} src={logo}/></Link>
           <Link to="/rules"><span className={"ml-3 h6 ruleLink"}>MEMORY GAME</span></Link>
         </Navbar.Brand>
         {this.props.isNewGameVisible ? <div className={"d-flex justify-content-center align-items-center navNewGame"}>
@@ -31,7 +30,7 @@ class CustomNavbar extends Component {
               })}
             </FormControl>
           </FormGroup>
-            <Link to="/game"><button className={"ml-3 newGameBtn"} onClick={this.props.newGame}>START A NEW GAME</button></Link>
+            <Link to="/game"><button className={"ml-3 newGameBtn"} onClick={() => this.props.newGame(this.state.deckSize)}>START A NEW GAME</button></Link>
         </div>
         : null
         }
@@ -52,7 +51,10 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     changeDeckSize: (deckSize) => dispatch(actions.changeDeckSize(deckSize)),
-    newGame: () => dispatch(actions.loadBoard())
+    newGame: (deckSize) => {
+      dispatch(actions.changeDeckSize(deckSize));
+      dispatch(actions.loadBoard());
+    }
   };
 };
 

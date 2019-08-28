@@ -36,9 +36,14 @@ export const gameEnd = () => {
   }
 };
 
-
 export const closeAllAfterRefresh = () => {
   return {
     type: actionTypes.CLOSE_ALL_AFTER_REFRESH
+  }
+};
+
+export const clearBoard = () => {
+  return {
+    type: actionTypes.CLEAR_BOARD
   }
 };
