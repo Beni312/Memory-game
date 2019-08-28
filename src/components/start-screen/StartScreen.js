@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import * as actions from '../../actions';
 import { FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import './StartScreen.css';
+import { Link } from "react-router-dom";
 
 class StartScreen extends Component {
 
@@ -33,7 +34,7 @@ class StartScreen extends Component {
             })}
           </FormControl>
         </FormGroup>
-        <button className={"newGameBtn"} onClick={this.props.loadBoard}>START A NEW GAME</button>
+        <Link to="/game"><button className={"newGameBtn"} onClick={this.props.loadBoard}>START A NEW GAME</button></Link>
       </div>
     );
   }

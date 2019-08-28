@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import CardContainer from "./containers/card/CardContainer";
+import Rules from "./components/rules/Rules";
 import StartScreen from "./components/start-screen/StartScreen";
-import StatisticContainer from "./containers/statistic/StatisticContainer";
+import { BrowserRouter, Route } from "react-router-dom";
 import { connect } from "react-redux";
 import CustomNavbar from "./containers/navbar/CustomNavbar";
 import './App.css';
@@ -9,23 +10,19 @@ import './App.css';
 class App extends Component {
 
   render() {
-    return(
-      <div className="App">
-        <CustomNavbar/>
-        <div className={"content"}>
-          {this.props.cards.length > 0 ? <StatisticContainer/> : null}
-          {this.props.cards.length === 0 ? <StartScreen/> : null}
-          <CardContainer/>
+    return (
+      <BrowserRouter>
+        <div className="App">
+          <CustomNavbar/>
+          <div className={"content"}>
+            <Route path="/" exact component={StartScreen}/>
+            <Route path="/game" component={CardContainer}/>
+            <Route path="/rules" component={Rules}/>
+          </div>
         </div>
-      </div>
+      </BrowserRouter>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    cards: state.card.cards
-  };
-};
-
-export default connect(mapStateToProps, null)(App);
+export default connect(null, null)(App);

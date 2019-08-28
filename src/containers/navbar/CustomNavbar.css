@@ -28,3 +28,7 @@
 .navNewGame {
     width: -webkit-fill-available;
 }
+
+.ruleLink {
+    color: white;
+}

@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
-import React, { Component } from 'react';
 import CardList from "../../components/card-list/CardList";
+import React, { Component } from 'react';
+import StatisticContainer from "../statistic/StatisticContainer";
 import * as actions from '../../actions';
 import { CardStatus } from "../../constants/CardStatus";
 
@@ -33,6 +34,7 @@ class CardContainer extends Component {
   render () {
     return (
       <div className={"container"}>
+        <StatisticContainer/>
         <CardList cards={this.props.cards} flipCard={this.flipCard}/>
       </div>
     );

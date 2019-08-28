@@ -105,10 +105,9 @@ const reducer = (state = initialState, action) => {
 
       return saveState ({
         ...state,
-        cards: [],
         matches: null,
-        tries: null,
         firstGuess: null,
+        secondGuess: null,
         best: bestPoint
       });
     }

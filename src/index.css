@@ -21,3 +21,7 @@ code {
   width: 175px;
   font-weight: 600;
 }
+
+.greyColor {
+  color: grey;
+}

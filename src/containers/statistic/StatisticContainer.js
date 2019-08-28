@@ -10,12 +10,12 @@ class StatisticContainer extends Component {
       <div className={"container pt-3 mb-1"}>
         <div className={"statisticFlexContainer ml-4 mr-4"}>
           <div>
-            <span>current tries</span>
+            <span className={"greyColor"}>Current tries:</span>
             <span className={"font-weight-bold ml-2"}>{this.props.tries}</span>
           </div>
           {this.props.best == null ? null :
             <div>
-              <div>Best:</div>
+              <div className={"greyColor"}>Best:</div>
               <h3>{this.props.best}</h3>
             </div>
           }

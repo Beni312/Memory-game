@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import logo from '../../images/snapsoft-logo.svg';
 import './CustomNavbar.css';
+import { Link } from "react-router-dom";
 
 class CustomNavbar extends Component {
 
@@ -15,7 +16,10 @@ class CustomNavbar extends Component {
   render() {
     return (
       <Navbar id={"navbar"} expand="lg">
-        <Navbar.Brand><Image id={"logo"} src={logo}/><span className={"ml-3 h6"}>MEMORY GAME</span></Navbar.Brand>
+        <Navbar.Brand>
+          <Image id={"logo"} src={logo}/>
+          <Link to="/rules"><span className={"ml-3 h6 ruleLink"}>MEMORY GAME</span></Link>
+        </Navbar.Brand>
         {this.props.isNewGameVisible ? <div className={"d-flex justify-content-center align-items-center navNewGame"}>
           <FormGroup className={"d-flex align-items-center mb-0 mr-3"} controlId="form.deckSize">
             <FormLabel className={"formTitle"}>Deck size:</FormLabel>
@@ -27,7 +31,7 @@ class CustomNavbar extends Component {
               })}
             </FormControl>
           </FormGroup>
-          <button className={"ml-3 newGameBtn"} onClick={this.props.newGame}>START A NEW GAME</button>
+            <Link to="/game"><button className={"ml-3 newGameBtn"} onClick={this.props.newGame}>START A NEW GAME</button></Link>
         </div>
         : null
         }
