@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.newGameBtn {
+  background-color: #ff3000;
+  border-color: #ff3000;
+  border-radius: 5px;
+  line-height: 40px;
+  color: white;
+  width: 175px;
+  font-weight: 600;
+}

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
 import * as actions from '../../actions';
-import { Button, FormControl, FormGroup, FormLabel } from "react-bootstrap";
+import { FormControl, FormGroup, FormLabel } from "react-bootstrap";
 import './StartScreen.css';
 
 class StartScreen extends Component {
@@ -33,7 +33,7 @@ class StartScreen extends Component {
             })}
           </FormControl>
         </FormGroup>
-        <Button variant="primary" onClick={this.props.loadBoard}>Start a new game</Button>
+        <button className={"newGameBtn"} onClick={this.props.loadBoard}>START A NEW GAME</button>
       </div>
     );
   }

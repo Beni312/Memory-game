@@ -1,5 +1,5 @@
 import * as actions from '../../actions';
-import { Button, FormControl, FormGroup, FormLabel, Image, Navbar } from "react-bootstrap";
+import { FormControl, FormGroup, FormLabel, Image, Navbar } from "react-bootstrap";
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import logo from '../../images/snapsoft-logo.svg';
@@ -27,7 +27,7 @@ class CustomNavbar extends Component {
               })}
             </FormControl>
           </FormGroup>
-          <Button className={"ml-3"} variant="primary" onClick={this.props.newGame}>Start a new game</Button>
+          <button className={"ml-3 newGameBtn"} onClick={this.props.newGame}>START A NEW GAME</button>
         </div>
         : null
         }

@@ -1,7 +1,6 @@
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import React, { Component } from 'react';
-import { Button } from "react-bootstrap";
 import './StatisticContainer.css';
 
 class StatisticContainer extends Component {
@@ -21,7 +20,7 @@ class StatisticContainer extends Component {
             </div>
           }
           <div>
-            <Button onClick={() => this.props.restart()}>RESTART</Button>
+            <button className={"restartBtn"} onClick={() => this.props.restart()}>RESTART</button>
           </div>
         </div>
       </div>

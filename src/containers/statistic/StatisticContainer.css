@@ -5,3 +5,12 @@
     padding-right: 30px;
     padding-left: 30px;
 }
+
+.restartBtn {
+    border: 2px solid black;
+    border-radius: 5px;
+    line-height: 40px;
+    color: black;
+    width: 150px;
+    font-weight: 600;
+}

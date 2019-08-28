@@ -18,6 +18,9 @@
 }
 
 #logo {
-    height: -webkit-fill-available;
+    height: 50px;
 }
 
+#navbar {
+    height: auto;
+}
