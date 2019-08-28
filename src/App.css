@@ -36,3 +36,10 @@
   background-color: #f2f2f2;
   height: 100vh;
 }
+
+.content {
+  background-image: url("./images/snapsoft-logo-background.svg");
+  background-repeat: no-repeat;
+  background-size: 100% 80%;
+  height: 90vh;
+}

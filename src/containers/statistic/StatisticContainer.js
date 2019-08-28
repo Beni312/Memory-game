@@ -8,7 +8,7 @@ class StatisticContainer extends Component {
 
   render () {
     return (
-      <div className={"container mt-3 mb-1"}>
+      <div className={"container pt-3 mb-1"}>
         <div className={"statisticFlexContainer ml-4 mr-4"}>
           <div>
             <span>current tries</span>

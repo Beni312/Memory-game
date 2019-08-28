@@ -12,9 +12,11 @@ class App extends Component {
     return(
       <div className="App">
         <CustomNavbar/>
-        {this.props.cards.length > 0 ? <StatisticContainer/> : null}
-        {this.props.cards.length === 0 ? <StartScreen/> : null}
-        <CardContainer/>
+        <div className={"content"}>
+          {this.props.cards.length > 0 ? <StatisticContainer/> : null}
+          {this.props.cards.length === 0 ? <StartScreen/> : null}
+          <CardContainer/>
+        </div>
       </div>
     );
   }
