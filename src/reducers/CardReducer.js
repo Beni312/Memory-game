@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
+import shuffle from 'shuffle-array';
 import uuid from 'uuid/v1';
 import { CardStatus } from "../constants/CardStatus";
 
@@ -30,7 +31,6 @@ const reducer = (state = initialState, action) => {
         deckSize: action.payload.deckSize
       }
     }
-    // TODO shuffle
     case actionTypes.LOAD_BOARD: {
       const cards = [];
       const pairs = state.deckSize / 2;
@@ -38,6 +38,7 @@ const reducer = (state = initialState, action) => {
         cards.push(createCard(state.images[i], CardStatus.CLOSED));
         cards.push(createCard(state.images[i], CardStatus.CLOSED));
       }
+      shuffle(cards);
       return {
         ...state,
         firstGuess: null,
