@@ -24,3 +24,7 @@
 #navbar {
     height: auto;
 }
+
+.navNewGame {
+    width: -webkit-fill-available;
+}

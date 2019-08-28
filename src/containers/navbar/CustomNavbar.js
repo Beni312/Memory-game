@@ -16,7 +16,7 @@ class CustomNavbar extends Component {
     return (
       <Navbar id={"navbar"} expand="lg">
         <Navbar.Brand><Image id={"logo"} src={logo}/><span className={"ml-3 h6"}>MEMORY GAME</span></Navbar.Brand>
-        {this.props.isNewGameVisible ? <div className={"d-flex justify-content-center align-items-center"}>
+        {this.props.isNewGameVisible ? <div className={"d-flex justify-content-center align-items-center navNewGame"}>
           <FormGroup className={"d-flex align-items-center mb-0 mr-3"} controlId="form.deckSize">
             <FormLabel className={"formTitle"}>Deck size:</FormLabel>
             <FormControl className={"deckSizeSelect"} onChange={this.onChange} defaultValue={this.props.deckSize} as="select">
