@@ -6,7 +6,7 @@ import './CardItem.css';
 
 export const CardItem = (props) => {
     return (
-      <li className="card m-2 shadow-lg p-3 bg-white" onClick={() => props.flipCard(props.card)}>
+      <li className={"m-2 p-3 " + (props.card.status === CardStatus.MATCHED ? 'matchedCard' : 'card')} onClick={() => props.flipCard(props.card)}>
         <div className={"imageContainer"}>
           {props.card.status !== CardStatus.CLOSED ? <Image src={'/images/cards/' + props.card.image}/> : null}
         </div>

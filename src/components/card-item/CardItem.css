@@ -11,4 +11,10 @@
 .card {
     border-radius: 10px !important;
     cursor:pointer;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+    background-color: white;
+}
+
+.matchedCard {
+    list-style-type: none;
 }
