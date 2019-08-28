@@ -16,6 +16,7 @@ const initialState = {
   tries: null,
   deckSize: 6,
   matches: null,
+  best: null,
   changeableDeckSizes: [
     6,8,10,12,14,16,18,20
   ]
@@ -77,14 +78,23 @@ const reducer = (state = initialState, action) => {
       }
     }
     case actionTypes.GAME_END: {
+      let bestPoint;
+      if (state.best == null) {
+        bestPoint = state.tries;
+      } else if (state.best > state.tries) {
+        bestPoint = state.tries;
+      } else {
+        bestPoint = state.best;
+      }
+
       return {
         ...state,
         cards: [],
         matches: null,
         tries: null,
-        firstGuess: null
+        firstGuess: null,
+        best: bestPoint
       }
-
     }
     default: {
       return state
