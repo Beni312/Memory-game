@@ -8,6 +8,13 @@ import { Link } from "react-router-dom";
 
 class CustomNavbar extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      deckSize: 6
+    }
+  }
+
   onChange = (e) => {
     this.setState({ deckSize: e.target.value });
   };
